@@ -1,5 +1,17 @@
 // svg.parser.js 0.1.0 - Copyright (c) 2014 Wout Fierens - Licensed under the MIT license
-;(function() {
+( function (root, factory) {
+    // UMD wrapper
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['svg.core'], factory);
+    } else if (typeof exports !== 'undefined') {
+        // Node/CommonJS
+        module.exports = factory(require('svg.core'));
+    } else {
+        // Browser globals
+        factory(root.SVG);
+    }
+}(this, function (SVG) {
 
   SVG.parse = {
     // Convert attributes to an object
@@ -67,5 +79,5 @@
       return trans
     }
   }
-
-})();
+return SVG;
+}));
